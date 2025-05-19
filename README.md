@@ -13,7 +13,7 @@ This is my Python project simulating pedestrian movement using the Social Force 
 - `requirements.txt`: A simple list I made of all the Python packages you need to install (like numpy and pygame) to get my code running. Just use `pip install -r requirements.txt` to set it up!
 - `real_data.csv`: My trajectory data file with pedestrian positions and velocities. It’s formatted for the code to work (columns: Track_ID, X, Y, Vx, Vy, Speed, Image_File). If you don’t have this, you’ll need to provide your own data and update the path in the script.
 - `Methodology of SF experiments.md`: This file explains my updated approach to the Social Force Model framework. I wrote down how I plan to tweak the parameters and methods to get better simulation results.
-- `Initial_SF_Experiments.pptx`: The PowerPoint presentation I made for class where I first shared my experiments with the Social Force Model. It has the early ideas and results that led to this code.
+- `Social_Force_Model.pptx`: The PowerPoint presentation I made for class where I first shared my experiments with the Social Force Model. It has the early ideas and results that led to this code.
 
 ## Notes
 - The `real_data.csv` file needs to be in the right spot (e.g., `E:\DOWNLOAD\real_data.csv` as coded, or adjust the path).
