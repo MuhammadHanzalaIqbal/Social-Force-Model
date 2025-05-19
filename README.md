@@ -1,6 +1,6 @@
 # Social Force Model Simulation
 
-This is my Python project simulating pedestrian movement using the Social Force Model. It all started with my initial experiments, which I explored and presented in a PowerPoint for class—those are the roots of this code! I’ve built it to work with real trajectory data, visualize agent movements with Pygame, and analyze forces and direction changes using Matplotlib. The code here reflects those early ideas, and I’ve since come up with an updated method to improve the framework, detailed in the `Methodology of SF experiments.md` file. Check out `Initial_SF_Experiments.pptx` to see where it all began!
+This is my Python project that models how pedestrians move using the Social Force Model. It began with some early tests I conducted, which I showcased in a PowerPoint presentation, and those efforts laid the foundation for this code! I’ve built it to work with real trajectory data, visualize agent movements with Pygame, and analyze forces and direction changes using Matplotlib. The code here reflects those early ideas, and I’ve since come up with an updated method to improve the framework, detailed in the `Methodology of SF experiments.md` file. Check out `Social_Force_Model.pptx` to see where it all began!
 
 ## Features
 - Simulates how pedestrians move based on social forces.
