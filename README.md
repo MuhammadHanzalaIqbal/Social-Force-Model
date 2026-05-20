@@ -1,20 +1,55 @@
-# Social Force Model Simulation
+# Social-Force-Model
 
-This is my Python project that models how pedestrians move using the Social Force Model. It began with some early tests I conducted, which I showcased in a PowerPoint presentation, and those efforts laid the foundation for this code! I’ve built it to work with real trajectory data, visualize agent movements with Pygame, and analyze forces and direction changes using Matplotlib. The code here reflects those early ideas, and I’ve since come up with an updated method to improve the framework, detailed in the `Methodology of SF experiments.md` file. Check out `Social_Force_Model.pptx` to see where it all began!
+**A Python implementation of the Helbing–Molnár Social Force Model for pedestrian dynamics, validated against real trajectory data, with Pygame visualization and force/direction analysis.**
 
-## Features
-- Simulates how pedestrians move based on social forces.
-- Shows trajectories with a cool Pygame visualization.
-- Calculates average forces and direction changes for analysis.
+A microscopic pedestrian-dynamics simulator: agents are point-mass particles under the combined action of a *driving force* (toward goal), *agent–agent repulsion*, and *wall repulsion*. The simulator ingests real pedestrian-trajectory CSV data, evolves the dynamics over time, renders the live trajectories with Pygame, and produces post-hoc analyses of per-agent forces and direction changes.
 
-## Files Included
-- `social_force_model.py`: The main Python script I wrote for this project. It runs the social force model simulation, handles agent movement with driving, agent, and wall forces, and includes Pygame visualization and Matplotlib plots for velocity and direction analysis. You’ll need to adjust the data path if your `real_data.csv` is in a different spot!
-- `README.md`: This is my guide to the project! I put together instructions on how to run the simulation, what features it has, and some notes on using it. It’s written in Markdown so it looks nice on GitHub.
-- `requirements.txt`: A simple list I made of all the Python packages you need to install (like numpy and pygame) to get my code running. Just use `pip install -r requirements.txt` to set it up!
-- `real_data.csv`: My trajectory data file with pedestrian positions and velocities. It’s formatted for the code to work (columns: Track_ID, X, Y, Vx, Vy, Speed, Image_File). If you don’t have this, you’ll need to provide your own data and update the path in the script.
-- `Methodology of SF experiments.md`: This file explains my updated approach to the Social Force Model framework. I wrote down how I plan to tweak the parameters and methods to get better simulation results.
-- `Social_Force_Model.pptx`: The PowerPoint presentation I made for class where I first shared my experiments with the Social Force Model. It has the early ideas and results that led to this code.
+## What this project does
 
-## Notes
-- The `real_data.csv` file needs to be in the right spot (e.g., `E:\DOWNLOAD\real_data.csv` as coded, or adjust the path).
-- Feel free to tweak the constants like `SCALE` or `DRIVING_FORCE_TAU` to see different behaviors!
+- **Input:** real pedestrian-trajectory CSV with columns `(Track_ID, X, Y, Vx, Vy, Speed, Image_File)`.
+- **Per-timestep dynamics** for each agent `i`:
+  - **Driving force** toward goal velocity (relaxation time `DRIVING_FORCE_TAU`).
+  - **Social repulsion** from every other agent `j` — exponentially decaying with inter-agent distance.
+  - **Wall/boundary repulsion** for static obstacles.
+  - Newtonian integration of the resultant acceleration to update velocity and position.
+- **Live visualization** with Pygame: trajectories rendered frame-by-frame.
+- **Post-hoc analysis** with Matplotlib: average force magnitudes per agent, direction-change statistics, velocity profiles.
+
+## Background
+
+The Social Force Model (Helbing & Molnár, *Physical Review E*, 1995) treats pedestrian motion as a deterministic dynamical system with social-interaction forces analogous to physical ones. It remains one of the most cited microscopic models for crowd simulation, evacuation studies, and autonomous-navigation context modelling.
+
+## What's in here
+
+| File | Purpose |
+|---|---|
+| `Social_Force_Github.ipynb` | Main notebook — model implementation, simulation loop, Pygame rendering, Matplotlib analysis |
+| `real_data.csv` | Pedestrian-trajectory data used as input |
+| `Social_Force_Model.pptx` | Slide deck of early experiments and motivation |
+| `requirements.txt` | Python dependencies |
+
+## Running it
+
+```bash
+pip install -r requirements.txt
+```
+
+Then open `Social_Force_Github.ipynb` and run cells in order. Make sure `real_data.csv` is in the working directory, or update the path constant at the top of the notebook.
+
+## Tunable parameters
+
+A few constants control the qualitative regime of the simulation:
+
+- `SCALE` — pixel-to-metre scaling for the Pygame canvas.
+- `DRIVING_FORCE_TAU` — relaxation time toward goal velocity. Small τ = sharper steering, large τ = lazier convergence.
+- Agent-repulsion amplitude `A` and decay length `B` — control how strongly and how far agents push each other.
+
+Sweeping these illustrates different crowd regimes — free flow, spontaneous lane formation, jamming at bottlenecks.
+
+## References
+
+- Helbing, D. & Molnár, P. (1995). *Social force model for pedestrian dynamics.* Physical Review E, 51(5), 4282.
+
+---
+
+*Author: Muhammad Hanzala Iqbal.*
